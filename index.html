@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slideshow Video Maker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Image Slideshow Video Maker</h1>
+    <p>Add images with captions, then generate a video.</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Slides</h2>
+        <button id="addSlideBtn" class="btn primary">+ Add Slide</button>
+      </div>
+      <div id="slides"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Settings</h2>
+      <div class="settings">
+        <label>Duration per slide (sec)
+          <input type="number" id="duration" value="5" min="1" max="60">
+        </label>
+        <label>Resolution
+          <select id="resolution">
+            <option value="1280x720" selected>1280x720 (landscape)</option>
+            <option value="1920x1080">1920x1080 (full HD)</option>
+            <option value="720x1280">720x1280 (vertical)</option>
+          </select>
+        </label>
+        <label>Image fit
+          <select id="fit">
+            <option value="contain" selected>Contain (no crop)</option>
+            <option value="cover">Cover (fill, crop)</option>
+          </select>
+        </label>
+        <label>Font size (px)
+          <input type="number" id="fontSize" value="48" min="12" max="200">
+        </label>
+        <label>Text color
+          <input type="color" id="textColor" value="#ffffff">
+        </label>
+        <label>Text position
+          <select id="textPos">
+            <option value="top">Top</option>
+            <option value="center">Center</option>
+            <option value="bottom" selected>Bottom</option>
+          </select>
+        </label>
+        <label class="check"><input type="checkbox" id="textBg" checked> Dark background behind text</label>
+        <label class="check"><input type="checkbox" id="fade"> Fade transition (0.5s)</label>
+        <label class="check"><input type="checkbox" id="autoDur" checked> Extend a slide to fit its voice-over (if longer than duration)</label>
+      </div>
+    </section>
+
+    <section class="panel center">
+      <button id="generateBtn" class="btn primary big">Generate Video</button>
+      <p class="note">Keep this tab open and visible while the video is being generated (it records in real time).</p>
+      <div id="progressWrap" class="hidden">
+        <div class="bar"><div id="bar"></div></div>
+        <p id="status"></p>
+      </div>
+      <p id="error" class="error"></p>
+    </section>
+
+    <section id="result" class="panel center hidden">
+      <h2>Result</h2>
+      <video id="player" controls></video>
+      <br>
+      <a id="downloadBtn" class="btn primary" download="slideshow.webm">Download Video</a>
+    </section>
+  </main>
+
+  <canvas id="canvas" class="hidden"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
